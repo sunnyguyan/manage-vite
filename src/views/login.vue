@@ -30,39 +30,41 @@
 <script>
 export default {
   name: "login",
-    data() {
+  data() {
     return {
       user: {
         userName: "admin",
-        userPwd: "123456",
+        userPwd: "123456"
       },
       rules: {
         userName: [
           {
             required: true,
             message: "请输入用户名",
-            trigger: "blur",
-          },
+            trigger: "blur"
+          }
         ],
         userPwd: [
           {
             required: true,
             message: "请输入密码",
-            trigger: "blur",
-          },
-        ],
-      },
+            trigger: "blur"
+          }
+        ]
+      }
     };
   },
-  mounted(){
-
-  },
+  mounted() {},
   methods: {
-    login(){
-       this.$refs.userForm.validate((valid) => {
+    login() {
+      this.$refs.userForm.validate(valid => {
         if (valid) {
+          this.$api.login(this.user).then(res => {
+            this.$store.commit("saveUserInfo", res);
+            this.$router.push("/welcome");
+          });
         }
-       })
+      });
     }
   }
 };

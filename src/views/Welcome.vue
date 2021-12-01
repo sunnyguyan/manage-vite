@@ -17,6 +17,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
 .welcome {
   display: flex;
